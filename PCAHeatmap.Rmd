@@ -1,0 +1,19 @@
+
+### PCA Heatmap
+
+In particular PCHeatmap allows for easy exploration of the primary sources of heterogeneity in a dataset, and can be useful when trying to decide which PCs to include for further downstream analyses. Both cells and genes are ordered according to their PCA scores. Setting cells.use to a number plots the ‘extreme’ cells on both ends of the spectrum, which dramatically speeds plotting for large datasets. Though clearly a supervised analysis, we find this to be a valuable tool for exploring correlated gene sets.
+
+```{r PCAHeatmap}
+PCHeatmap(object = obj, pc.use = 1, cells.use = 500, do.balanced = TRUE, label.columns = FALSE)
+```
+
+### Heatmaps by PCs
+
+```{r PCHeatmaps}
+PCHeatmap(object = obj, 
+          pc.use = 1:12, 
+          cells.use = 500, 
+          do.balanced = TRUE, 
+          label.columns = FALSE, 
+          use.full = FALSE)
+```

@@ -1,0 +1,29 @@
+
+## Markers By Cluster
+
+```{r FindMarkers}
+library(DT)
+
+# find markers for every cluster compared to all remaining cells, report
+# only the positive ones
+obj.markers <- FindAllMarkers(object = obj, 
+                               only.pos = TRUE, 
+                               min.pct = 0.25, 
+                               thresh.use = 0.25)
+
+obj.markers %>% 
+  group_by(cluster) %>% 
+  top_n(2, avg_logFC) %>%
+  DT::datatable(.)
+
+gene_list <- lapply(unique(obj.markers$cluster), function(c){
+
+obj.markers %>% 
+  group_by(cluster) %>% 
+  top_n(2, avg_logFC) %>%
+  filter(cluster == c) %>% 
+    .$gene
+  
+})
+
+```

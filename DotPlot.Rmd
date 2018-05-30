@@ -1,0 +1,14 @@
+
+## DotPlot: Genes by Cluster
+
+```{r DotPlot}
+
+topGenes <- obj.markers %>% 
+  group_by(cluster) %>% 
+  top_n(4, avg_logFC)
+
+DotPlot(object = obj,
+        genes.plot = unique(topGenes$gene),
+        plot.legend = TRUE,
+        x.lab.rot = TRUE)
+```
